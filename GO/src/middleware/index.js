@@ -1,5 +1,5 @@
 const sendError = (res, message) => {
-    return res.status(401).json({
+    return res.status(404).json({
         success: false,
         message: message
     });

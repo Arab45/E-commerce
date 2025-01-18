@@ -8,10 +8,12 @@ const passport = require('passport');
 const config = require('./service/config')
 // const GoogleStrategy = require('passport-google-oauth20');
 const session = require('express-session');
+const userRouter = require('./src/router/user-router');
 
 
 
 app.use(express.json());
+app.use('/api/v1', userRouter);
 
 
 //copy work
