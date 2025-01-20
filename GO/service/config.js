@@ -19,6 +19,13 @@ const Admin = require('../src/models/Admin');
             console.log('Google Profile:', profile);
             // const user = { id: profile.id, displayName: profile.displayName };
             done(null, profile);
+            Admin.findOne({googleId: profile.id}).then((currentUser) => {
+                if(currentUser){
+                    console.log("User data exist in the data base");
+                } else {
+                    console.log("User data does not exist");
+                }
+            })
             
             new Admin({
                 googleID: profile.id,
@@ -30,12 +37,15 @@ const Admin = require('../src/models/Admin');
         })
     );
 
-    passport.serializeUser((user, done) => {
-        done(null, user);
+    passport.serializeUser((admin, done) => {
+        console.log('my serialize id', admin.id);
+        done(null, admin.id);
       });
       
-      passport.deserializeUser((user, done) => {
-        done(null, user);
+      passport.deserializeUser((id, done) => {
+        Admin.findById(id).then((admin) => {
+        done(null, admin);
+        })
       });
     
 

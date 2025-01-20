@@ -6,7 +6,7 @@ const { callbackSuccessURI, loginAttempt, verifyProfile } = require('../controll
 // const { Google } = require('./') 
 
 
-
+//google authentication
 router.get('/google', passport.authenticate('google', {
     scope: [ 'profile',  'email' ]
 }));

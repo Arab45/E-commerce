@@ -20,4 +20,6 @@ mongoose.connection.on('disconnected', () => {
 
 
 
-module.exports = {connectToDB}
+module.exports = {
+    connectToDB
+}

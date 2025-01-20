@@ -1,5 +1,5 @@
 const express = require('express');
-const { connectToDB } = require('./src/db');
+const { connectToDB } = require('./src/db/index');
 const app = express();
 require('dotenv').config();
 // const passportSetup = require('./service/outh')
@@ -25,15 +25,10 @@ app.use(session({
     saveUninitialized: false
   }));
 
-
-
 //initialization to work with express session
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', adminAuth);
-
-
-
 
 
 //passport set up and it take two parameter obeject and callback function
@@ -52,12 +47,7 @@ app.use('/auth', adminAuth);
 
 
 
-
-  
-  
-
-
 app.listen(process.env.PORT_NUM, () => {
-    console.log(`https://localhost:${process.env.PORT_NUM}`)
+    console.log(`http://localhost:${process.env.PORT_NUM}`)
     connectToDB();
 });
